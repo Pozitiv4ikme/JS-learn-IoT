@@ -1,0 +1,74 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(205, 130, 233);
+    border: 1px solid #d3bb9f;
+    border-radius: 5px;
+    flex-direction: row;
+    height: 8vh;
+}
+
+.header__menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.header__menu__name > h1 {
+    color: #fff7ac;
+    font-size: 1.9em;
+    font-weight: 400;
+    opacity: 0.7;
+    padding: 1.5vh 1.7vw;
+    margin: 0;
+}
+
+.header__menu-nav ul {
+    display: flex;
+    padding-left: 0;
+}
+
+.header__menu-nav a {
+    padding-right: 1.7vw;
+    padding-left: 1.7vw;
+    font-size: 1.3em;
+}
+
+.header__item form {
+    display: flex;
+    padding-left: 0;
+    align-items: center;
+}
+
+.header__item-clear {
+    font-family: "Monaco", sans-serif;
+    margin-right: 1.3vw;
+    margin-left: 1.3vw;
+    height: 3vh;
+    width: 7vw;
+    font-size: 0.9em;
+    border: 1px solid red;
+    border-radius: 4px;
+    color: red;
+}
+
+.header__item-search {
+    font-family: "Monaco", sans-serif;
+    margin-left: 1.3vw;
+    height: 3vh;
+    width: 10vw;
+    font-size: 0.9em;
+    border: 1px solid green;
+    border-radius: 4px;
+    color: green;
+}
+
+.header__item-form-input {
+    height: 2.4vh;
+    width: 15vw;
+    border: 1px solid #bcaa94;
+    border-radius: 4px;
+    padding: 0.5vh 0.5vw;
+    font-size: 0.8em;
+}

@@ -1,0 +1,81 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Monaco", sans-serif;
+}
+
+.edit__header {
+    display: flex;
+    justify-content: flex-start;
+    background-color: rgba(245, 158, 245, 0.881);
+    border: 1px solid #dec8ae;
+    border-radius: 5px;
+    height: 8vh;
+}
+
+.edit__header__title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.edit__header__title > h1 {
+    color: rgba(15, 60, 91, 0.835);
+    margin-right: 3vw;
+    margin-left: 1vw;
+}
+
+.edit__header__title > p {
+    color: rgba(44, 106, 148, 0.835);
+    font-size: 1.2em;
+}
+
+.edit__tools {
+    display: flex;
+    justify-content: center;
+    background-color: pink;
+    height: 92vh;
+    width: 100%;
+}
+
+.edit__tools__title {
+    font-size: 2em;
+    margin-top: 4vh;
+    margin-bottom: 2vh;
+    color: rgb(171, 86, 86);
+}
+
+#name_edit,
+#amount_of_passengers_edit,
+#maximum_speed_edit,
+#price_edit {
+    border: 1px solid #fff;
+    height: 2.5vh;
+    border-radius: 6px;
+    padding-left: 0.7vh;
+    margin: 0.7vh 0 3vh 0;
+    width: 18vw;
+}
+
+.edit__tools__container > form {
+    text-align: center;
+}
+
+.edit__tools__container label {
+    font-size: 1.3em;
+    color: rgb(12, 15, 42);
+}
+
+.edit__tools__accept_edit-helicopter-submit-btn {
+    width: 11vw;
+    height: 2.5vh;
+    font-size: 0.8em;
+    font-family: "Monaco", sans-serif;
+    background-color: green;
+    border: 1px solid green;
+    border-radius: 4px;
+    color: #fff;
+}
