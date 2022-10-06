@@ -1,8 +1,13 @@
-import {
-    addItem
-} from "./index.js";
+import { 
+    EDIT_NAME,
+    EDIT_AMOUNT_OF_PASSENGERS,
+    EDIT_MAXIMUM_SPEED,
+    EDIT_PRICE
+} from "./edit-index.js";
 
-export const EDIT_BUTTON_PREFIX = "edit-button-";
+import { deleteHelicopter } from "./api.js";
+
+import { refetchAllHelicopters } from "./index.js";
 
 const nameInput = document.getElementById("name_input");
 const amountOfPassengersInput = document.getElementById("amount_of_passengers_input");
@@ -26,8 +31,8 @@ export const clearInputs = () => {
     priceInput.value = "";
 };
 
-const itemTemplate = ({ id, name, amount_of_passengers, maximum_speed, price }) => `
-<div id="${id}" class="view-page__items__card">
+const itemTemplate = ({id, name, amount_of_passengers, maximum_speed, price}) => `
+<div class="view-page__items__card">
     <img 
         src="./card-img/helicopter.jpg"
         class="view-page__items-image"
@@ -38,7 +43,10 @@ const itemTemplate = ({ id, name, amount_of_passengers, maximum_speed, price }) 
     <p class="view-page__items__card-content__passangers">Max passangers - ${amount_of_passengers}</p>
     <p class="view-page__items__card-content__maximum-speed">Max speed - ${maximum_speed} (km/h)</p>
     <h5 class="view-page__items__card-content__price">Price: ${price} ($) </h5>
-    <button type="button" class="view-page__items__card-content__edit-button" id="${EDIT_BUTTON_PREFIX}${id}">Edit</button>
+    <div class="view-page__items__buttons">
+        <button type="button" class="view-page__items__card-content__edit-button" id="edit-btn">Edit</button>
+        <button type="button" class="view-page__items__card-content__delete-button" id="delete-btn">Delete</button>
+    </div>
 </div>
 `;
 
@@ -47,21 +55,29 @@ export const addItemToPage = (id, name, amount_of_passengers, maximum_speed, pri
         'afterbegin',
         itemTemplate(id, name, amount_of_passengers, maximum_speed, price)
     );
+
+    const editBtn = document.getElementById('edit-btn')
+    editBtn.addEventListener('click', () => {
+        sessionStorage.setItem('item-id', id.id)
+        sessionStorage.setItem(`${EDIT_NAME}`, id.name)
+        sessionStorage.setItem(`${EDIT_AMOUNT_OF_PASSENGERS}`, id.amount_of_passengers)
+        sessionStorage.setItem(`${EDIT_MAXIMUM_SPEED}`, id.maximum_speed)
+        sessionStorage.setItem(`${EDIT_PRICE}`, id.price)
+        window.location.href = 'edit-index.html' 
+    })
+
+    const deleteBtn = document.getElementById('delete-btn')
+    deleteBtn.addEventListener('click', () => {
+        deleteHelicopter(id.id)
+        window.location.reload()
+    })
 };
 
 // for get info from backend
 export const renderItemLists = (items) => {
     itemsContainer.innerHTML = "";
 
-    if (sessionStorage.length <= 1) {
-        for (const item of items) {
-            addItemToPage(item);
-        }
-    } else {
-        const items = JSON.parse(sessionStorage.getItem('items'))
-        for (const item of items) {
-            addItem(item);
-        }
-        sessionStorage.clear()
+    for (const item of items) {
+        addItemToPage(item);
     }
 };

@@ -1,17 +1,13 @@
 import { 
-    addItemToPage,
     clearInputs,
     renderItemLists,
-    getInputValues,
-    EDIT_BUTTON_PREFIX
+    getInputValues
 } from "./dom_util.js";  // file for work with DOM
 
 import {
-    EDIT_NAME,
-    EDIT_AMOUNT_OF_PASSENGERS,
-    EDIT_MAXIMUM_SPEED,
-    EDIT_PRICE
-} from "./edit-index.js";
+    getAllHelicopters,
+    postHelicopter
+} from "./api.js";
 
 // return your html elemets into js
 const submitButton = document.getElementById("submit_button")
@@ -22,39 +18,15 @@ const totalSumOfHelicoptersPrice = document.getElementById("total_sum_of_helicop
 const countPricePrintDiv = document.getElementById("count_price_print_div")
 const sortByTheAmountOfPassenfersButton = document.getElementById("sort_by_the_amount_of_passengers_button")
 
-
 // for elemets and work with your data
 let helicopters = [];
 
+export const refetchAllHelicopters = async () => {
+    const allHelicopters = await getAllHelicopters();
 
-export let addItem = ({ name, amount_of_passengers, maximum_speed, price }) => {
-    const generatedItemId = uuid.v4();
+    helicopters = allHelicopters;
 
-    const newItem = { 
-        id: generatedItemId,
-        name, 
-        amount_of_passengers,
-        maximum_speed,
-        price
-    };
-
-    helicopters.push(newItem)
-
-    addItemToPage(newItem);
-
-    const editBtn = document.getElementById(`${EDIT_BUTTON_PREFIX}${newItem.id}`);
-
-    editBtn.addEventListener('click', () => {
-        localStorage.setItem('edit-item-id', JSON.stringify(newItem.id));
-        const updateName = localStorage.setItem(`${EDIT_NAME}`, newItem.name);
-        const updateAmount = localStorage.setItem(`${EDIT_AMOUNT_OF_PASSENGERS}`, newItem.amount_of_passengers);
-        const updateSpeed = localStorage.setItem(`${EDIT_MAXIMUM_SPEED}`, newItem.maximum_speed);
-        const updatePrice = localStorage.setItem(`${EDIT_PRICE}`, newItem.price);
-
-        window.location.href = "edit-index.html";
-
-        sessionStorage.setItem('items', JSON.stringify(helicopters))
-    });
+    renderItemLists(helicopters);
 };
 
 submitButton.addEventListener("click", (event) => {
@@ -97,12 +69,12 @@ submitButton.addEventListener("click", (event) => {
     } else {
         clearInputs();
 
-        addItem({ 
+        postHelicopter({ 
             name, 
             amount_of_passengers, 
             maximum_speed, 
             price 
-        });
+        }).then(refetchAllHelicopters);
     }
 });
 
@@ -112,8 +84,6 @@ searchButton.addEventListener("click", () => {
 
     renderItemLists(foundHelicopters);
 });
-
-
 
 
 clearFindlButton.addEventListener("click", () => {
@@ -173,4 +143,4 @@ sortByTheAmountOfPassenfersButton.addEventListener("click", () => {
 });
 
 // main code
-renderItemLists(helicopters);
+refetchAllHelicopters();
