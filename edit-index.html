@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit page</title>
+
+    <!-- My styles -->
+    <link rel="stylesheet" href="./css/edit-styles.css">
+
+    <!-- UUID library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.2.0/uuid.min.js"></script>
+</head>
+<body>
+    <header class="edit__header">
+        <section class="edit__header__title">
+            <h1>Helicopter company</h1>
+            <p>Edit</p>
+        </section>
+    </header>
+    <main class="edit__tools">
+        <section class="edit__tools__container">
+            <h2 class="edit__tools__title">Edit helicopter</h2>
+            <form name="editHelicopterForm" id="form-to-edit">
+                <label for="name_edit">Name</label><br>
+                <input type="text" id="name_edit"><br>
+
+                <label for="amount_of_passengers_edit">Amount of passengers</label><br>
+                <input type="number" id="amount_of_passengers_edit"><br>
+
+                <label for="maximum_speed_edit">Maximum speed</label><br>
+                <input type="number" id="maximum_speed_edit"><br>
+
+                <label for="price_edit">Price</label><br>
+                <input type="number" id="price_edit"><br>
+
+                <button type="button" id="edit_accept_button" class="edit__tools__accept_edit-helicopter-submit-btn">Submit edit</button>
+            </form>
+        </section>
+    </main>
+
+    <script type="module" src="./js/edit-index.js"></script>
+</body>
+</html>

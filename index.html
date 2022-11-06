@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helicopters company. CRUD project</title>
+
+    <!-- My styles -->
+    <link rel="stylesheet" href="./css/styles.css">
+
+    <!-- UUID library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.2.0/uuid.min.js"></script>
+</head>
+<body>
+    <header class="header container">
+        <section class="header__menu">
+            <div class="header__menu__name">
+                <h1>Helicopter company</h1>
+            </div>
+        </section>
+
+        <section class="header__item">
+            <form name="findItemCard">
+                <input type="text" id="find_input" placeholder="Type something..." class="header__item-form-input"><br>
+                <button type="button" class="header__item-search" id="search_button">Search</button>
+                <button type="button" class="header__item-clear" id="clear_find_button">Clear</button>
+            </form>
+        </section>
+    </header>
+
+    <main class="view-page container">
+        <aside class="view-page__tools">
+
+            <h2 class="view-page__tools__create">Add helicopter</h2>
+            <form name="createHelicopterForm">
+                <label for="name_input">Name</label><br>
+                <input type="text" id="name_input"><br>
+
+                <label for="amount_of_passengers_input">Amount of passengers</label><br>
+                <input type="number" id="amount_of_passengers_input"><br>
+
+                <label for="maximum_speed_input">Maximum speed</label><br>
+                <input type="number" id="maximum_speed_input"><br>
+
+                <label for="price_input">Price</label><br>
+                <input type="number" id="price_input"><br>
+
+                <button type="reset" class="view-page__tools__add-helicopter-clear-btn">Clear</button>
+
+                <button type="submit" id="submit_button" class="view-page__tools__add-helicopter-submit-btn">Submit</button>
+            </form>
+
+            <hr class="view-page__tools-count-hr">
+            <div class="view-page__tools__count-price-div" id="count_price_container">
+                <h3>Count price for all helicopters</h3>
+                <button type="button" id="total_sum_of_helicopters_price" class="view-page__tools__count-btn">Count</button>
+                <div id="count_price_print_div"></div>
+            </div>
+
+            <hr class="view-page__tools-manage-hr">
+            <h2 class="view-page__tools__sort">Manage helicopter</h2>
+            <div class="view-page__tools__sort-by-the-amount-of-passengers-div">
+                <h3>Sort all helicopters by the amount of passengers</h3>
+                <label class="switch">
+                    <input type="checkbox" id="sort_by_the_amount_of_passengers_button">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </aside>
+
+        <section class="view-page__items" id="items_container">
+        </section>
+
+        <script type="module" src="./js/index.js"></script>
+    </main>
+</body>
+</html>
